@@ -42,8 +42,25 @@ const getPosition = async (addr) => {
   }
 };
 
+const getTransactions = async (addr) => {
+  try {
+    const history = await provider.getHistory(addr)
+    const transactions = history.map(({ hash, to, from, value }) => ({
+      hash,
+      to,
+      from,
+      value: ethers.utils.formatEther(value),
+    }));
+
+    return transactions
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 
 module.exports = {
   getBalance,
-  getPosition
+  getPosition,
+  getTransactions
 };
