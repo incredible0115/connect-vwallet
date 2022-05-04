@@ -14,16 +14,16 @@ const getBalance = async (addr) => {
 
 const getPosition = async (addr) => {
   try {
+    const urlCovalent = `https://api.covalenthq.com/v1/1/address/${addr}/balances_v2/?quote-currency=USD&format=JSON&nft=false&no-nft-fetch=false&key=${process.env.COVALENT_API_KEY}`;
     const res = await axios({
       method: "get",
-      url: `https://api.covalenthq.com/v1/1/address/${addr}/balances_v2/?quote-currency=USD&format=JSON&nft=false&no-nft-fetch=false&key=${process.env.COVALENT_API_KEY}`,
+      url: urlCovalent,
     });
 
     const positions = res.data.data.items
       .filter((item) => {
         return (
-          item.supports_erc === null ||
-          (item.supports_erc && item.supports_erc.includes("erc20"))
+          item.supports_erc === null || (item.supports_erc && item.supports_erc.includes("erc20"))
         );
       })
       .map((item) => {

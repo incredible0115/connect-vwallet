@@ -1,11 +1,10 @@
 const fs = require("fs");
-const path = require("path");
 const dotenv = require("dotenv");
+const path = require("path");
+
 const { getBalance, getPosition, getTransactions } = require("./util");
 
-dotenv.config({
-  path: path.join(__dirname, ".env"),
-});
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 const main = async () => {
   if (process.argv[2] === "--wallet" && process.argv[3]) {
@@ -18,7 +17,7 @@ const main = async () => {
       }
       
     } else {
-      throw Error("Invalid wallet address");
+      throw Error("Invalid wallet address!!!");
     }
   } else {
     throw Error(
