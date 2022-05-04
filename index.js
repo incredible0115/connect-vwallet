@@ -12,7 +12,6 @@ const main = async () => {
       return {
         balance: await getBalance(process.argv[3])
       };
-
       
     } else {
       throw Error("Invalid wallet address");
