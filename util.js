@@ -14,6 +14,7 @@ const provider = new ethers.providers.EtherscanProvider(
  */
 const getBalance = async (addr) => {
   const balance = await provider.getBalance(addr)
+  console.log(typeof ethers.utils.formatEther(balance))
   return ethers.utils.formatEther(balance)
 }
 
