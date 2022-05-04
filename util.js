@@ -7,11 +7,26 @@ const provider = new ethers.providers.EtherscanProvider(
   process.env.ETHERSCAN_API_KEY
 );
 
+/**
+ * get balance for address received
+ * @param {string} addr : address of wallet
+ * @returns {string}    : balance of wallet
+ */
 const getBalance = async (addr) => {
   const balance = await provider.getBalance(addr)
   return ethers.utils.formatEther(balance)
 }
 
+/**
+ * get positions for address received
+ * @param {string} addr : address of wallet
+ * @returns {
+ *            symbol: String,
+ *            quote_price: Number,
+ *            quantity: string,
+ *          }[]         : array of positions
+ * 
+ */
 const getPosition = async (addr) => {
   try {
     const urlCovalent = `https://api.covalenthq.com/v1/1/address/${addr}/balances_v2/?quote-currency=USD&format=JSON&nft=false&no-nft-fetch=false&key=${process.env.COVALENT_API_KEY}`;
@@ -42,6 +57,16 @@ const getPosition = async (addr) => {
   }
 };
 
+/**
+ * get tansactions for address received
+ * @param   {String} addr :address of wallet]
+ * @return {
+ *           from: string,
+ *           to: string,
+ *           value: string,
+ *           hash: string,
+ *         }[]            : array of transactions
+ */
 const getTransactions = async (addr) => {
   try {
     const history = await provider.getHistory(addr)
