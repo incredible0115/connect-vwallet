@@ -1,0 +1,15 @@
+{
+  "name": "connect-vwallet",
+  "version": "1.0.0",
+  "description": "Connectors",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.0",
+    "ethers": "^5.6.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  }
+}
